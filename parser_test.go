@@ -59,6 +59,7 @@ func TestConvertErrors(t *testing.T) {
 	}{
 		{"kjasdflasdf"},
 		{"rgb(999, 1, 1)"},
+		{"rgba(1, 1, 1, 2)"},
 	}
 
 	p := New()

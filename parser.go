@@ -116,6 +116,10 @@ func parseRGB(s string) (color.RGBA, error) {
 		return c, err
 	}
 
+	if r > 255 || g > 255 || b > 255 {
+		return c, errors.New("invalid value")
+	}
+
 	c.R = uint8(r)
 	c.G = uint8(g)
 	c.B = uint8(b)
@@ -147,6 +151,10 @@ func parseRGBA(s string) (color.RGBA, error) {
 	a, err := strconv.ParseFloat(parts[3], 64)
 	if err != nil {
 		return c, err
+	}
+
+	if r > 255 || g > 255 || b > 255 || a > 1 {
+		return c, errors.New("invalid value")
 	}
 
 	c.R = uint8(r)
