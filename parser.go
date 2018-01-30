@@ -165,8 +165,47 @@ func parseRGBA(s string) (color.RGBA, error) {
 	return c, nil
 }
 
-func parseHSL(s string) (color.RGBA, error) {
-	return color.RGBA{}, TODO()
+func parseHSL(str string) (color.RGBA, error) {
+	c := color.RGBA{}
+
+	str = strings.Replace(str, "hsl(", "", 1)
+	str = strings.Replace(str, ")", "", 1)
+	str = strings.Replace(str, " ", "", -1)
+	str = strings.Replace(str, "%", "", -1)
+
+	parts := strings.Split(str, ",")
+
+	h, err := strconv.Atoi(parts[0])
+	if err != nil {
+		return c, err
+	}
+
+	sI, err := strconv.Atoi(parts[1])
+	if err != nil {
+		return c, err
+	}
+	s := float64(sI) / 100
+
+	lI, err := strconv.Atoi(parts[2])
+	if err != nil {
+		return c, err
+	}
+	l := float64(lI) / 100
+
+	if s > 100 || l > 100 {
+		return c, errors.New("invalid value")
+	}
+
+	if s == 0 {
+		c.R = uint8(float64(l*255) + 0.5)
+		c.G = c.R
+		c.B = c.R
+		c.A = 255
+		fmt.Println(h, s, l, c)
+		return c, err
+	}
+
+	return c, TODO()
 }
 
 func parseHSLA(s string) (color.RGBA, error) {

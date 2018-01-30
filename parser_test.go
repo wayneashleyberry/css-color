@@ -30,14 +30,14 @@ func TestConvert(t *testing.T) {
 		{"rgba(255, 255, 0, 1)", color.RGBA{255, 255, 0, 255}},
 		{"rgba(0, 0, 0, 0.5)", color.RGBA{0, 0, 0, 128}},
 		// hsl()
-		// {"hsl(0, 0, 100)", color.RGBA{255, 255, 255, 255}},
-		// {"hsl(0, 0, 75)", color.RGBA{192, 192, 192, 255}},
-		// {"hsl(0, 0, 50)", color.RGBA{128, 128, 128, 255}},
-		// {"hsl(120, 100, 25)", color.RGBA{0, 128, 0, 255}},
-		// {"hsl(220, 25, 50)", color.RGBA{96, 117, 159, 255}},
-		// // keywords
-		// {"black", color.RGBA{0, 0, 0, 255}},
-		// {"red", color.RGBA{255, 0, 0, 255}},
+		{"hsl(0, 0%, 100%)", color.RGBA{255, 255, 255, 255}},
+		{"hsl(0, 0%, 75%)", color.RGBA{192, 192, 192, 255}},
+		{"hsl(0, 0%, 50%)", color.RGBA{128, 128, 128, 255}},
+		{"hsl(120, 100%, 25%)", color.RGBA{0, 128, 0, 255}},
+		{"hsl(220, 25%, 50%)", color.RGBA{96, 117, 159, 255}},
+		// keywords
+		{"black", color.RGBA{0, 0, 0, 255}},
+		{"red", color.RGBA{255, 0, 0, 255}},
 	}
 
 	p := New()
@@ -61,6 +61,7 @@ func TestConvertErrors(t *testing.T) {
 	}{
 		{"kjasdflasdf"},
 		{"rgb(999, 1, 1)"},
+		{"hsl(1, 1, 100)"},
 		{"rgba(1, 1, 1, 2)"},
 	}
 
@@ -69,7 +70,7 @@ func TestConvertErrors(t *testing.T) {
 	for _, tc := range testCases {
 		got, err := p.Convert(tc.input)
 		if err == nil {
-			t.Fatalf("expected error from: %s, got: %+v", tc.input, got)
+			t.Errorf("expected error from: %s, got: %+v", tc.input, got)
 		}
 	}
 }
