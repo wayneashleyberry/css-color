@@ -8,18 +8,20 @@ import (
 	"strings"
 )
 
-type parser struct {
+// Parser implementation
+type Parser struct {
 	keywords map[string]string
 }
 
 // New creates a new parser
-func New() *parser {
-	p := parser{}
+func New() *Parser {
+	p := Parser{}
 	p.keywords = keywords()
 	return &p
 }
 
-func (p *parser) Convert(s string) (color.RGBA, error) {
+// Convert takes a css color string and returns a color.RGBA value
+func (p *Parser) Convert(s string) (color.RGBA, error) {
 	// clean up
 	s = strings.TrimSpace(s)
 	s = strings.ToLower(s)

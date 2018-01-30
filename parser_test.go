@@ -1,9 +1,17 @@
 package parser
 
 import (
+	"fmt"
 	"image/color"
 	"testing"
 )
+
+func ExampleNew() {
+	p := New()
+	c, _ := p.Convert("#ff0000")
+	fmt.Println(c.R, c.G, c.B)
+	// Output: 255 0 0
+}
 
 func TestConvert(t *testing.T) {
 	testCases := []struct {
