@@ -198,15 +198,89 @@ func parseHSL(str string) (color.RGBA, error) {
 	}
 
 	if s == 0 {
-		c.R = uint8(float64(l*255) + 0.5)
+		c.R = uint8(l*255 + 0.5)
 		c.G = c.R
 		c.B = c.R
 		c.A = 255
-		fmt.Println(h, s, l, c)
 		return c, err
 	}
 
-	return c, TODO()
+	var r, g, b float64
+	var t1 float64
+	var t2 float64
+	var tr float64
+	var tg float64
+	var tb float64
+
+	if l < 0.5 {
+		t1 = l * (1.0 + s)
+	} else {
+		t1 = l + s - l*s
+	}
+
+	t2 = 2*l - t1
+	h = h / 360
+	tr = h + 1.0/3.0
+	tg = h
+	tb = h - 1.0/3.0
+
+	if tr < 0 {
+		tr++
+	}
+	if tr > 1 {
+		tr--
+	}
+	if tg < 0 {
+		tg++
+	}
+	if tg > 1 {
+		tg--
+	}
+	if tb < 0 {
+		tb++
+	}
+	if tb > 1 {
+		tb--
+	}
+
+	// Red
+	if 6*tr < 1 {
+		r = t2 + (t1-t2)*6*tr
+	} else if 2*tr < 1 {
+		r = t1
+	} else if 3*tr < 2 {
+		r = t2 + (t1-t2)*(2.0/3.0-tr)*6
+	} else {
+		r = t2
+	}
+
+	// Green
+	if 6*tg < 1 {
+		g = t2 + (t1-t2)*6*tg
+	} else if 2*tg < 1 {
+		g = t1
+	} else if 3*tg < 2 {
+		g = t2 + (t1-t2)*(2.0/3.0-tg)*6
+	} else {
+		g = t2
+	}
+
+	// Blue
+	if 6*tb < 1 {
+		b = t2 + (t1-t2)*6*tb
+	} else if 2*tb < 1 {
+		b = t1
+	} else if 3*tb < 2 {
+		b = t2 + (t1-t2)*(2.0/3.0-tb)*6
+	} else {
+		b = t2
+	}
+
+	c.R = uint8(float64(r)*255.0 + 0.5)
+	c.G = uint8(float64(g)*255.0 + 0.5)
+	c.B = uint8(float64(b)*255.0 + 0.5)
+	c.A = 255
+	return c, nil
 }
 
 func parseHSLA(s string) (color.RGBA, error) {
