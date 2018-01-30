@@ -6,11 +6,32 @@ import (
 	"testing"
 )
 
-func ExampleParser_Convert() {
+func ExampleParser_Convert_hex() {
 	p := New()
 	c, _ := p.Convert("#bada55")
-	fmt.Println(c.R, c.G, c.B)
-	// Output: 186 218 85
+	fmt.Println(c.R, c.G, c.B, c.A)
+	// Output: 186 218 85 255
+}
+
+func ExampleParser_Convert_keyword() {
+	p := New()
+	c, _ := p.Convert("red")
+	fmt.Println(c.R, c.G, c.B, c.A)
+	// Output: 255 0 0 255
+}
+
+func ExampleParser_Convert_rgba() {
+	p := New()
+	c, _ := p.Convert("rgba(255, 100, 0, 0.5)")
+	fmt.Println(c.R, c.G, c.B, c.A)
+	// Output: 255 100 0 128
+}
+
+func ExampleParser_Convert_hsl() {
+	p := New()
+	c, _ := p.Convert("hsl(120, 100%, 25%)")
+	fmt.Println(c.R, c.G, c.B, c.A)
+	// Output: 0 128 0 255
 }
 
 func TestConvert(t *testing.T) {
