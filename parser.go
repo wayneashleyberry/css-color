@@ -175,10 +175,11 @@ func parseHSL(str string) (color.RGBA, error) {
 
 	parts := strings.Split(str, ",")
 
-	h, err := strconv.Atoi(parts[0])
+	hI, err := strconv.Atoi(parts[0])
 	if err != nil {
 		return c, err
 	}
+	h := float64(hI)
 
 	sI, err := strconv.Atoi(parts[1])
 	if err != nil {
