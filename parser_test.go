@@ -6,11 +6,11 @@ import (
 	"testing"
 )
 
-func ExampleNew() {
+func ExampleParser_Convert() {
 	p := New()
-	c, _ := p.Convert("#ff0000")
+	c, _ := p.Convert("#bada55")
 	fmt.Println(c.R, c.G, c.B)
-	// Output: 255 0 0
+	// Output: 186 218 85
 }
 
 func TestConvert(t *testing.T) {
