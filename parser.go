@@ -12,18 +12,18 @@ func TODO() error {
 	return errors.New("not yet implemented")
 }
 
-type Parser struct {
+type parser struct {
 	keywords map[string]string
 }
 
 // New creates a new parser
-func New() *Parser {
-	p := Parser{}
+func New() *parser {
+	p := parser{}
 	p.keywords = keywords()
 	return &p
 }
 
-func (p *Parser) Convert(s string) (color.RGBA, error) {
+func (p *parser) Convert(s string) (color.RGBA, error) {
 	// clean up
 	s = strings.TrimSpace(s)
 	s = strings.ToLower(s)
