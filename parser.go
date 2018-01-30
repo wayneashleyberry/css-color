@@ -189,7 +189,7 @@ func parseHSL(str string) (color.RGBA, error) {
 	}
 	l := float64(lI) / 100
 
-	if s > 100 || l > 100 {
+	if s > 1.0 || l > 1.0 {
 		return c, errors.New("invalid value")
 	}
 

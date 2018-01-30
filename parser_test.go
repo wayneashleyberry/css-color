@@ -67,7 +67,7 @@ func TestConvertErrors(t *testing.T) {
 	}{
 		{"kjasdflasdf"},
 		{"rgb(999, 1, 1)"},
-		{"hsl(1, 1, 100)"},
+		{"hsl(1, 1%, 120%)"},
 		{"rgba(1, 1, 1, 2)"},
 	}
 
