@@ -8,6 +8,10 @@ import (
 	"strings"
 )
 
+func TODO() error {
+	return errors.New("not yet implemented")
+}
+
 type Parser struct {
 	keywords map[string]string
 }
@@ -154,9 +158,9 @@ func parseRGBA(s string) (color.RGBA, error) {
 }
 
 func parseHSL(s string) (color.RGBA, error) {
-	return color.RGBA{}, errors.New("not yet implemented")
+	return color.RGBA{}, TODO()
 }
 
 func parseHSLA(s string) (color.RGBA, error) {
-	return color.RGBA{}, errors.New("not yet implemented")
+	return color.RGBA{}, TODO()
 }
