@@ -73,6 +73,8 @@ func TestConvert(t *testing.T) {
 		// keywords
 		{"black", color.RGBA{0, 0, 0, 255}},
 		{"red", color.RGBA{255, 0, 0, 255}},
+		// computed values
+		{"transparent", color.RGBA{0, 0, 0, 0}},
 	}
 
 	p := New()

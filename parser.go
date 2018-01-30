@@ -20,7 +20,8 @@ func New() *Parser {
 	return &p
 }
 
-// Convert takes a css color string and returns a color.RGBA value
+// Convert takes a CSS color value and returns an RGBA struct.
+// Supported notations are HEX, RGB, RGBA, HSL, HSLA and Keywords.
 func (p *Parser) Convert(s string) (color.RGBA, error) {
 	// clean up
 	s = strings.TrimSpace(s)
@@ -53,6 +54,10 @@ func (p *Parser) Convert(s string) (color.RGBA, error) {
 
 	if val, ok := p.keywords[s]; ok {
 		return parseHex(val)
+	}
+
+	if s == "transparent" {
+		return color.RGBA{0, 0, 0, 0}, nil
 	}
 
 	return color.RGBA{}, errors.New("could not parse input")
