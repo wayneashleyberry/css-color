@@ -35,6 +35,12 @@ func TestConvert(t *testing.T) {
 		{"hsl(0, 0%, 50%)", color.RGBA{128, 128, 128, 255}},
 		{"hsl(120, 100%, 25%)", color.RGBA{0, 128, 0, 255}},
 		{"hsl(220, 25%, 50%)", color.RGBA{96, 117, 159, 255}},
+		// hsla()
+		{"hsla(0, 0%, 100%, 1)", color.RGBA{255, 255, 255, 255}},
+		{"hsla(0, 0%, 75%, 0.5)", color.RGBA{191, 191, 191, 128}},
+		{"hsla(0, 0%, 50%, 0)", color.RGBA{128, 128, 128, 0}},
+		{"hsla(120, 100%, 25%, 1)", color.RGBA{0, 128, 0, 255}},
+		{"hsla(220, 25%, 50%, 0.5)", color.RGBA{96, 117, 159, 128}},
 		// keywords
 		{"black", color.RGBA{0, 0, 0, 255}},
 		{"red", color.RGBA{255, 0, 0, 255}},

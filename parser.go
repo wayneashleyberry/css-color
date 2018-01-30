@@ -8,10 +8,6 @@ import (
 	"strings"
 )
 
-func TODO() error {
-	return errors.New("not yet implemented")
-}
-
 type parser struct {
 	keywords map[string]string
 }
@@ -85,7 +81,7 @@ func parseHex(scol string) (color.RGBA, error) {
 		return c, err
 	}
 	if n != 4 {
-		return c, fmt.Errorf("color: %v is not a hex-color", scol)
+		return c, errors.New("not a hex-color")
 	}
 
 	c.R = uint8(float64(r)*factor*255.0 + 0.5)
@@ -283,6 +279,22 @@ func parseHSL(str string) (color.RGBA, error) {
 	return c, nil
 }
 
-func parseHSLA(s string) (color.RGBA, error) {
-	return color.RGBA{}, TODO()
+func parseHSLA(str string) (color.RGBA, error) {
+	str = strings.Replace(str, "hsla(", "", 1)
+	str = strings.Replace(str, ")", "", 1)
+	str = strings.Replace(str, " ", "", -1)
+	str = strings.Replace(str, "%", "", -1)
+
+	parts := strings.Split(str, ",")
+
+	hsl, err := parseHSL(fmt.Sprintf("hsl(%s, %s%%, %s%%)", parts[0], parts[1], parts[2]))
+
+	a, err := strconv.ParseFloat(parts[3], 64)
+	if err != nil {
+		return color.RGBA{}, err
+	}
+
+	hsl.A = uint8(a*255.0 + 0.5)
+
+	return hsl, err
 }
