@@ -4,7 +4,6 @@ import (
 	"errors"
 	"fmt"
 	"image/color"
-	"strconv"
 	"strings"
 )
 
@@ -248,19 +247,18 @@ func parseHSL(str string) (color.RGBA, error) {
 }
 
 func parseHSLA(str string) (color.RGBA, error) {
-	str = strings.Replace(str, "hsla(", "", 1)
-	str = strings.Replace(str, ")", "", 1)
-	str = strings.Replace(str, " ", "", -1)
-	str = strings.Replace(str, "%", "", -1)
+	var h, s, l int
+	var a float64
 
-	parts := strings.Split(str, ",")
-
-	hsl, err := parseHSL(fmt.Sprintf("hsl(%s, %s%%, %s%%)", parts[0], parts[1], parts[2]))
-
-	a, err := strconv.ParseFloat(parts[3], 64)
+	n, err := fmt.Sscanf(str, "hsla(%d,%d%%,%d%%,%f)", &h, &s, &l, &a)
 	if err != nil {
 		return color.RGBA{}, err
 	}
+	if n != 4 {
+		return color.RGBA{}, errors.New("invalid format")
+	}
+
+	hsl, err := parseHSL(fmt.Sprintf("hsl(%d, %d%%, %d%%)", h, s, l))
 
 	hsl.A = uint8(a*255.0 + 0.5)
 
