@@ -8,7 +8,7 @@
 ### Installation
 
 ```sh
-go get github.com/wayneashleyberry/css-color
+go get github.com/wayneashleyberry/css-color/...
 ```
 
 ### Usage
@@ -16,7 +16,7 @@ go get github.com/wayneashleyberry/css-color
 ```go
 package main
 
-import parser "github.com/wayneashleyberry/css-color"
+import parser "github.com/wayneashleyberry/css-color/pkg/parser"
 
 func main() {
     p := parser.New()
