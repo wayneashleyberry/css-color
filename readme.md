@@ -3,3 +3,23 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/wayneashleyberry/css-color)](https://goreportcard.com/report/github.com/wayneashleyberry/css-color)
 
 > Convert CSS color values into native Go [image/color](https://golang.org/pkg/image/color) values.
+
+### Installation
+
+```sh
+go get github.com/wayneashleyberry/css-color
+```
+
+### Usage
+
+```go
+package main
+
+import parser "github.com/wayneashleyberry/css-color"
+
+func main() {
+    p := parser.New()
+    col, _ := p.Convert("#bada55")
+    fmt.Println(col)
+}
+```
