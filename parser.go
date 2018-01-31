@@ -26,6 +26,7 @@ func (p *Parser) Convert(s string) (color.RGBA, error) {
 	// clean up
 	s = strings.TrimSpace(s)
 	s = strings.ToLower(s)
+	s = strings.Replace(s, " ", "", -1)
 
 	// hex
 	if strings.HasPrefix(s, "#") {
@@ -99,73 +100,48 @@ func parseHex(scol string) (color.RGBA, error) {
 }
 
 func parseRGB(s string) (color.RGBA, error) {
-	c := color.RGBA{}
-
-	s = strings.Replace(s, "rgb(", "", 1)
-	s = strings.Replace(s, ")", "", 1)
-	s = strings.Replace(s, " ", "", -1)
-
-	parts := strings.Split(s, ",")
-	r, err := strconv.Atoi(parts[0])
+	var r, g, b int
+	n, err := fmt.Sscanf(s, "rgb(%d,%d,%d)", &r, &g, &b)
 	if err != nil {
-		return c, err
+		return color.RGBA{}, err
 	}
-	g, err := strconv.Atoi(parts[1])
-	if err != nil {
-		return c, err
-	}
-	b, err := strconv.Atoi(parts[2])
-	if err != nil {
-		return c, err
+	if n != 3 {
+		return color.RGBA{}, errors.New("invalid format")
 	}
 
 	if r > 255 || g > 255 || b > 255 {
-		return c, errors.New("invalid value")
+		return color.RGBA{}, errors.New("invalid value")
 	}
 
-	c.R = uint8(r)
-	c.G = uint8(g)
-	c.B = uint8(b)
-	c.A = 255
-
-	return c, nil
+	return color.RGBA{
+		R: uint8(r),
+		G: uint8(g),
+		B: uint8(b),
+		A: 255,
+	}, nil
 }
 
 func parseRGBA(s string) (color.RGBA, error) {
-	c := color.RGBA{}
-
-	s = strings.Replace(s, "rgba(", "", 1)
-	s = strings.Replace(s, ")", "", 1)
-	s = strings.Replace(s, " ", "", -1)
-
-	parts := strings.Split(s, ",")
-	r, err := strconv.Atoi(parts[0])
+	var r, g, b int
+	var a float64
+	n, err := fmt.Sscanf(s, "rgba(%d,%d,%d,%f)", &r, &g, &b, &a)
 	if err != nil {
-		return c, err
+		return color.RGBA{}, err
 	}
-	g, err := strconv.Atoi(parts[1])
-	if err != nil {
-		return c, err
-	}
-	b, err := strconv.Atoi(parts[2])
-	if err != nil {
-		return c, err
-	}
-	a, err := strconv.ParseFloat(parts[3], 64)
-	if err != nil {
-		return c, err
+	if n != 4 {
+		return color.RGBA{}, errors.New("invalid format")
 	}
 
 	if r > 255 || g > 255 || b > 255 || a > 1 {
-		return c, errors.New("invalid value")
+		return color.RGBA{}, errors.New("invalid value")
 	}
 
-	c.R = uint8(r)
-	c.G = uint8(g)
-	c.B = uint8(b)
-	c.A = uint8(float64(a)*255.0 + 0.5)
-
-	return c, nil
+	return color.RGBA{
+		R: uint8(r),
+		G: uint8(g),
+		B: uint8(b),
+		A: uint8(float64(a)*255.0 + 0.5),
+	}, nil
 }
 
 func parseHSL(str string) (color.RGBA, error) {

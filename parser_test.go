@@ -53,6 +53,7 @@ func TestConvert(t *testing.T) {
 		{"#ff000000", color.RGBA{255, 0, 0, 0}},
 		{"#aabbccdd", color.RGBA{170, 187, 204, 221}},
 		// rgb()
+		{"rgb(1,1,0)", color.RGBA{1, 1, 0, 255}},
 		{"rgb(1, 1, 0)", color.RGBA{1, 1, 0, 255}},
 		// rgba()
 		{"rgba(255, 255, 0, 0)", color.RGBA{255, 255, 0, 0}},
