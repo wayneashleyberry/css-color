@@ -5,6 +5,10 @@
 
 > Convert CSS color values into native Go [image/color](https://golang.org/pkg/image/color) values.
 
+The parser currently supports almost all values allowed by [the css spec](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value). Inlcuding 3, 4, 6 and 8 digit hex, rgb, rgba, hsl, hsla and keywords.
+
+Read more on [godoc.org](https://godoc.org/github.com/wayneashleyberry/css-color).
+
 ### Installation
 
 ```sh
