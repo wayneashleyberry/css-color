@@ -28,4 +28,4 @@ func main() {
 }
 ```
 
-[Try the above example in The Go Playground.](https://play.golang.org/p/NYFAJ7B-9D3)
+<small>[Try in The Go Playground.](https://play.golang.org/p/NYFAJ7B-9D3)</small>
