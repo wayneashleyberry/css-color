@@ -27,3 +27,5 @@ func main() {
     fmt.Println(col)
 }
 ```
+
+[Try the above example in Go Playgrounds.](https://play.golang.org/p/NYFAJ7B-9D3)
