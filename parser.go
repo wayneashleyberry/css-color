@@ -72,11 +72,11 @@ func parseHex(scol string) (color.RGBA, error) {
 	factor := 1.0 / 255.0
 
 	if len(scol) == 7 {
-		scol = scol + "ff"
+		scol += "ff"
 	}
 
 	if len(scol) == 4 {
-		scol = scol + "f"
+		scol += "f"
 	}
 
 	if len(scol) == 5 {
@@ -199,7 +199,7 @@ func parseHSL(str string) (color.RGBA, error) {
 	}
 
 	t2 = 2*l - t1
-	h = h / 360
+	h /= 360
 	tr = h + 1.0/3.0
 	tg = h
 	tb = h - 1.0/3.0
