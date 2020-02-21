@@ -229,35 +229,38 @@ func parseHSL(str string) (color.RGBA, error) {
 	}
 
 	// Red
-	if 6*tr < 1 {
+	switch {
+	case 6*tr < 1:
 		r = t2 + (t1-t2)*6*tr
-	} else if 2*tr < 1 {
+	case 2*tr < 1:
 		r = t1
-	} else if 3*tr < 2 {
+	case 3*tr < 2:
 		r = t2 + (t1-t2)*(2.0/3.0-tr)*6
-	} else {
+	default:
 		r = t2
 	}
 
 	// Green
-	if 6*tg < 1 {
+	switch {
+	case 6*tg < 1:
 		g = t2 + (t1-t2)*6*tg
-	} else if 2*tg < 1 {
+	case 2*tg < 1:
 		g = t1
-	} else if 3*tg < 2 {
+	case 3*tg < 2:
 		g = t2 + (t1-t2)*(2.0/3.0-tg)*6
-	} else {
+	default:
 		g = t2
 	}
 
 	// Blue
-	if 6*tb < 1 {
+	switch {
+	case 6*tb < 1:
 		b = t2 + (t1-t2)*6*tb
-	} else if 2*tb < 1 {
+	case 2*tb < 1:
 		b = t1
-	} else if 3*tb < 2 {
+	case 3*tb < 2:
 		b = t2 + (t1-t2)*(2.0/3.0-tb)*6
-	} else {
+	default:
 		b = t2
 	}
 
