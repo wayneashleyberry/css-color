@@ -74,8 +74,6 @@ func keywords() map[string]string {
 
 	keywords["cyan"] = "#00ffff"
 
-	keywords["aqua"] = "#00ffff"
-
 	keywords["darkblue"] = "#00008b"
 
 	keywords["darkcyan"] = "#008b8b"
