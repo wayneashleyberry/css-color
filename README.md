@@ -1,4 +1,4 @@
-[![GoDoc](https://godoc.org/github.com/wayneashleyberry/css-color?status.svg)](https://godoc.org/github.com/wayneashleyberry/css-color)
+[![go.dev reference](https://img.shields.io/badge/go.dev-reference-007d9c?logo=go&logoColor=white)](https://pkg.go.dev/github.com/wayneashleyberry/css-color?tab=doc)
 ![go](https://github.com/wayneashleyberry/css-color/workflows/go/badge.svg)
 [![Go Report Card](https://goreportcard.com/badge/github.com/wayneashleyberry/css-color)](https://goreportcard.com/report/github.com/wayneashleyberry/css-color)
 

@@ -1,5 +1,7 @@
 name: go
 on: [push]
+env:
+  GO111MODULE: on
 jobs:
   build:
     name: build
@@ -8,8 +10,6 @@ jobs:
       - uses: actions/setup-go@v2-beta
         with:
           go-version: "1.13.8"
-
-      - run: go env -w "GO111MODULE=on"
 
       - uses: actions/checkout@v2
 
