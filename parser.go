@@ -15,7 +15,9 @@ type Parser struct {
 // New creates a new parser
 func New() *Parser {
 	p := Parser{}
+
 	p.keywords = keywords()
+
 	return &p
 }
 
@@ -83,10 +85,12 @@ func parseHex(scol string) (color.RGBA, error) {
 	}
 
 	var r, g, b, a uint8
+
 	n, err := fmt.Sscanf(scol, format, &r, &g, &b, &a)
 	if err != nil {
 		return c, err
 	}
+
 	if n != 4 {
 		return c, errors.New("not a hex-color")
 	}
@@ -95,15 +99,18 @@ func parseHex(scol string) (color.RGBA, error) {
 	c.G = uint8(float64(g)*factor*255.0 + 0.5)
 	c.B = uint8(float64(b)*factor*255.0 + 0.5)
 	c.A = uint8(float64(a)*factor*255.0 + 0.5)
+
 	return c, nil
 }
 
 func parseRGB(s string) (color.RGBA, error) {
 	var r, g, b int
+
 	n, err := fmt.Sscanf(s, "rgb(%d,%d,%d)", &r, &g, &b)
 	if err != nil {
 		return color.RGBA{}, err
 	}
+
 	if n != 3 {
 		return color.RGBA{}, errors.New("invalid format")
 	}
@@ -122,11 +129,14 @@ func parseRGB(s string) (color.RGBA, error) {
 
 func parseRGBA(s string) (color.RGBA, error) {
 	var r, g, b int
+
 	var a float64
+
 	n, err := fmt.Sscanf(s, "rgba(%d,%d,%d,%f)", &r, &g, &b, &a)
 	if err != nil {
 		return color.RGBA{}, err
 	}
+
 	if n != 4 {
 		return color.RGBA{}, errors.New("invalid format")
 	}
@@ -145,6 +155,7 @@ func parseRGBA(s string) (color.RGBA, error) {
 
 func parseHSL(str string) (color.RGBA, error) {
 	var hI, sI, lI int
+
 	n, err := fmt.Sscanf(str, "hsl(%d,%d%%,%d%%)", &hI, &sI, &lI)
 	if n != 3 {
 		return color.RGBA{}, errors.New("invalid format")
@@ -165,14 +176,20 @@ func parseHSL(str string) (color.RGBA, error) {
 		c.G = c.R
 		c.B = c.R
 		c.A = 255
+
 		return c, err
 	}
 
 	var r, g, b float64
+
 	var t1 float64
+
 	var t2 float64
+
 	var tr float64
+
 	var tg float64
+
 	var tb float64
 
 	if l < 0.5 {
@@ -190,18 +207,23 @@ func parseHSL(str string) (color.RGBA, error) {
 	if tr < 0 {
 		tr++
 	}
+
 	if tr > 1 {
 		tr--
 	}
+
 	if tg < 0 {
 		tg++
 	}
+
 	if tg > 1 {
 		tg--
 	}
+
 	if tb < 0 {
 		tb++
 	}
+
 	if tb > 1 {
 		tb--
 	}
@@ -243,17 +265,20 @@ func parseHSL(str string) (color.RGBA, error) {
 	c.G = uint8(float64(g)*255.0 + 0.5)
 	c.B = uint8(float64(b)*255.0 + 0.5)
 	c.A = 255
+
 	return c, nil
 }
 
 func parseHSLA(str string) (color.RGBA, error) {
 	var h, s, l int
+
 	var a float64
 
 	n, err := fmt.Sscanf(str, "hsla(%d,%d%%,%d%%,%f)", &h, &s, &l, &a)
 	if err != nil {
 		return color.RGBA{}, err
 	}
+
 	if n != 4 {
 		return color.RGBA{}, errors.New("invalid format")
 	}
