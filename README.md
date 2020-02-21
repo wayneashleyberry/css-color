@@ -6,7 +6,7 @@
 
 The parser currently supports almost all values allowed by [the css spec](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value). Inlcuding 3, 4, 6 and 8 digit hex, rgb, rgba, hsl, hsla and keywords.
 
-Read more on [godoc.org](https://godoc.org/github.com/wayneashleyberry/css-color).
+Read more on [pkg.go.dev](https://pkg.go.dev/github.com/wayneashleyberry/css-color?tab=doc).
 
 ### Installation
 
