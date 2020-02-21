@@ -149,7 +149,7 @@ func parseRGBA(s string) (color.RGBA, error) {
 		R: uint8(r),
 		G: uint8(g),
 		B: uint8(b),
-		A: uint8(float64(a)*255.0 + 0.5),
+		A: uint8(a*255.0 + 0.5),
 	}, nil
 }
 
@@ -261,9 +261,9 @@ func parseHSL(str string) (color.RGBA, error) {
 		b = t2
 	}
 
-	c.R = uint8(float64(r)*255.0 + 0.5)
-	c.G = uint8(float64(g)*255.0 + 0.5)
-	c.B = uint8(float64(b)*255.0 + 0.5)
+	c.R = uint8(r*255.0 + 0.5)
+	c.G = uint8(g*255.0 + 0.5)
+	c.B = uint8(b*255.0 + 0.5)
 	c.A = 255
 
 	return c, nil
