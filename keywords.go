@@ -18,8 +18,6 @@ func keywords() map[string]string {
 
 	keywords["purple"] = "#800080"
 
-	keywords["fuchsia"] = "#ff00ff"
-
 	keywords["green"] = "#008000"
 
 	keywords["lime"] = "#00ff00"
