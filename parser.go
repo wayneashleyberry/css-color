@@ -182,15 +182,7 @@ func parseHSL(str string) (color.RGBA, error) {
 
 	var r, g, b float64
 
-	var t1 float64
-
-	var t2 float64
-
-	var tr float64
-
-	var tg float64
-
-	var tb float64
+	var t1, t2, tr, tg, tb float64
 
 	if l < 0.5 {
 		t1 = l * (1.0 + s)
