@@ -19,7 +19,7 @@ go get github.com/wayneashleyberry/css-color
 ```go
 package main
 
-import parser "github.com/wayneashleyberry/css-color"
+import "github.com/wayneashleyberry/css-color/pkg/parser"
 
 func main() {
     p := parser.New()

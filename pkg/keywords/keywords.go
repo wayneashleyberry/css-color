@@ -1,7 +1,8 @@
-package parser
+// Package keywords contains a list of css color keywords.
+package keywords
 
 // All returns a map of all css color keywords and their associated hex value.
-func keywords() map[string]string {
+func All() map[string]string {
 	keywords := make(map[string]string)
 
 	keywords["black"] = "#000000"

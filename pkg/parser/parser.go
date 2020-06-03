@@ -1,3 +1,4 @@
+// Package parser can convert CSS color values into native Go image/color values.
 package parser
 
 import (
@@ -5,6 +6,8 @@ import (
 	"fmt"
 	"image/color"
 	"strings"
+
+	"github.com/wayneashleyberry/css-color/pkg/keywords"
 )
 
 // Parser implementation
@@ -16,7 +19,7 @@ type Parser struct {
 func New() *Parser {
 	p := Parser{}
 
-	p.keywords = keywords()
+	p.keywords = keywords.All()
 
 	return &p
 }
